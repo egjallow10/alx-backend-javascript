@@ -1,8 +1,8 @@
 const fs = require('fs');
 
-function countStudents() {
+function countStudents(path) {
   try {
-    const data = fs.readFileSync('database.csv', 'utf8');
+    const data = fs.readFileSync(path, 'utf8');
     const lines = data.split('\n');
     const students = lines.map((line) => {
       const [firstname, lastname, , field] = line.split(',');
