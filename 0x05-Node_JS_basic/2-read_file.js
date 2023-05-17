@@ -8,10 +8,6 @@ function countStudents(path) {
       const [firstname, lastname, , field] = line.split(',');
       return { firstname, lastname, field };
     });
-
-    if (students.length === 0) {
-      throw new Error('Cannot load the database');
-    }
     const csStudents = students
       .filter((student) => student.field === 'CS')
       .map((student) => student.firstname);
@@ -25,5 +21,4 @@ function countStudents(path) {
     throw new Error('Cannot load the database');
   }
 }
-countStudents();
 module.exports = countStudents;
