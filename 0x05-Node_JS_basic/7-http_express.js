@@ -12,7 +12,8 @@ app.get('/students', async (req, res) => {
   try {
     const data = await studentDetails(process.argv[2]);
     const { students, sweStudents, csStudents } = data;
-    //     This is the list of our students
+    
+    
     // Number of students: 10
     // Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
     // Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
