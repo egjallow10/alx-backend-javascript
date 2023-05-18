@@ -16,11 +16,13 @@ const app = http.createServer((req, res) => {
     res.write('This is the list of our students\n');
     studentDetails(process.argv[2]).then((data) => {
       const { students, sweStudents, csStudents } = data;
-      console.log(students, sweStudents, csStudents);
+      // console.log(students, sweStudents, csStudents);
       res.write(`Number of students: ${students.length}\n`);
       res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}\n`);
       res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
       res.end();
+    }).catch((error) => {
+      res.end(error.message);
     });
   }
 });
