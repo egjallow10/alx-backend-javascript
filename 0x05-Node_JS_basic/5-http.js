@@ -22,10 +22,7 @@ const app = http.createServer((req, res) => {
       res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}\n`);
       res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
       res.end();
-    }).catch((error) => {
-      console.log(error.message);
     });
-  }
 });
 
 module.exports = app.listen(port, hostname, () => {
