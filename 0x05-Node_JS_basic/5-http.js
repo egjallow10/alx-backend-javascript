@@ -1,6 +1,5 @@
 const http = require('http');
 const studentDetails = require('./3-read_file_async');
-const { error } = require('console');
 
 const hostname = '127.0.0.1';
 const port = 1245;
@@ -23,6 +22,7 @@ const app = http.createServer((req, res) => {
       res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
       res.end();
     });
+  }
 });
 
 module.exports = app.listen(port, hostname, () => {
