@@ -19,8 +19,7 @@ app.get('/students', async (req, res) => {
     res.send(`This is the list of our students\nNumber of students: ${students.splice(1).length}\nNumber of students in CS: ${csStudents.length}. List: ${csStudents.join(
       ', ',
     )}\nNumber of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(
-      ', ',
-    )}
+      ', ', )}
     `);
   } catch (error) {
     res.send(error.message);
