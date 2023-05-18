@@ -1,17 +1,27 @@
 const http = require('http');
+const studentDetails = require('./3-read_file_async');
 
 const hostname = '127.0.0.1';
 const port = 1245;
+// console.log(process.argv[2]);
 
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
-  // eslint-disable-next-line no-empty
   } else if (req.url === '/students') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/plain');
+    res.write('This is the list of our students\n');
+    studentDetails(process.argv[2]).then((data) => {
+      const { students, sweStudents, csStudents } = data;
+      console.log(students, sweStudents, csStudents);
+      res.write(`Number of students: ${students.length}\n`);
+      res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}\n`);
+      res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}\n`);
+      res.end();
+    });
   }
 });
 
