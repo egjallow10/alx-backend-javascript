@@ -12,17 +12,11 @@ app.get('/students', async (req, res) => {
   try {
     const data = await studentDetails(process.argv[2]);
     const { students, sweStudents, csStudents } = data;
-    //     This is the list of our students
-    // Number of students: 10
-    // Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
-    // Number of students in SWE: 4. List: Guillaume, Joseph, Paul, Tommy
-    res.send(`This is the list of our students\nNumber of students: ${students.splice(1).length}\nNumber of students in CS: ${csStudents.length}. List: ${csStudents.join(
-      ', ',
-    )}\nNumber of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(
-      // eslint-disable-next-line comma-dangle
-      ','
-    )}
-    `);
+    res.write('This is the list of our students');
+    res.write(` Number of students: ${students.length}\n`);
+    res.write(` Number of students in CS: ${csStudents.slice(1).length}. List: ${csStudents.join(', ')}`);
+    res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
+    res.end();
   } catch (error) {
     res.send(error.message);
   }
