@@ -6,14 +6,11 @@ const port = 1245;
 // console.log(process.argv[2]);
 
 const app = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.write('This is the list of our students\n');
     studentDetails(process.argv[2]).then((data) => {
       const { students, sweStudents, csStudents } = data;
       // console.log(students, sweStudents, csStudents);
