@@ -22,7 +22,7 @@ app.get('/students', async (req, res) => {
       ', ',
     )}`);
   } catch (error) {
-    res.end(error.message);
+    res.status(500).end(error.message);
   }
 });
 
