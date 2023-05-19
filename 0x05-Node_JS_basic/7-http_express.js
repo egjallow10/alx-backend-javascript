@@ -5,6 +5,8 @@ const app = express();
 const port = '1245';
 
 app.get('/', (req, res) => {
+  res.statusCode = 200;
+  res.setHeader('content-Type', 'text/plain');
   res.send('Hello Holberton School!');
 });
 
@@ -12,6 +14,8 @@ app.get('/students', async (req, res) => {
   try {
     const data = await studentDetails(process.argv[2]);
     const { students, sweStudents, csStudents } = data;
+    res.statusCode = 200;
+    res.setHeader('content-Type', 'text/plain');
     //     This is the list of our students
     // Number of students: 10
     // Number of students in CS: 6. List: Johann, Arielle, Jonathan, Emmanuel, Guillaume, Katie
@@ -22,7 +26,8 @@ app.get('/students', async (req, res) => {
       ', ',
     )}`);
   } catch (error) {
-    res.status(500).end(error.message);
+    res.status(200).write(error.message);
+    res.end();
   }
 });
 
