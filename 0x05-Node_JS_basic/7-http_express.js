@@ -19,9 +19,9 @@ app.get('/students', async (req, res) => {
     res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`);
     res.end();
   } catch (error) {
-    res.statusCode = 500;
-    res.write('This is the list of our students\n Cannot load the database');
-    res.end();
+    // res.statusCode = 500;
+    res.send('This is the list of our students\nCannot load the database');
+    // res.end();
   }
 });
 
