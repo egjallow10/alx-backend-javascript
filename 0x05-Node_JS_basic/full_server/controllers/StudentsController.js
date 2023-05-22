@@ -34,7 +34,7 @@ class StudentsController {
         response.end();
       }
     } catch (error) {
-      // response.statusCode = 500;
+      response.statusCode = 500;
       response.send('Cannot load the database');
       // response.end();
     }
