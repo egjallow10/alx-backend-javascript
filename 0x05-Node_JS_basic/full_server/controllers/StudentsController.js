@@ -17,10 +17,10 @@ class StudentsController {
   static async getAllStudentsByMajor(request, response) {
     const { major } = request.params;
 
-    if (!major === 'CS' && 'SWE' && !major === 'SWE') {
+    if (major !== 'CS' && major !== 'SWE') {
       response.statusCode = 500;
       request.send('Major parameter must be CS or SWE');
-      request.end();
+      // request.end();
     }
     try {
       const studentData = await readDatabase(process.argv[2]);
