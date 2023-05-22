@@ -16,23 +16,28 @@ class StudentsController {
 
   static async getAllStudentsByMajor(request, response) {
     const { major } = request.params;
-    console.log(major);
 
     if (!major === 'CS' && 'SWE' && !major === 'SWE') {
       response.statusCode = 500;
-      request.write('Major parameter must be CS or SWE');
+      request.send('Major parameter must be CS or SWE');
       request.end();
     }
     try {
       const studentData = await readDatabase(process.argv[2]);
       // console.log(studentData);
       if (major === 'CS') {
-        response.status(200).send(`Number of students in CS: ${studentData.CS.length}. List: ${studentData.CS.join(', ')}`);
+        response.statusCOde = 200;
+        response.write(`List: ${studentData.CS.join(', ')}`);
+        response.end();
       } else if (major === 'SWE') {
-        response.send(`Number of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);
+        response.statusCOde = 200;
+        response.write(`List: ${studentData.SWE.join(', ')}`);
+        response.end();
       }
     } catch (error) {
-      response.status(500).send('Cannot load the database');
+      response.statusCode = 500;
+      response.send('Cannot load the database');
+      response.end();
     }
   }
 }
