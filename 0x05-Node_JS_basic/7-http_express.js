@@ -20,7 +20,7 @@ app.get('/students', async (req, res) => {
     res.end();
   } catch (error) {
     res.statusCode = 500;
-    res.write('This is the list of our students Cannot load the database');
+    res.write('This is the list of our students\n Cannot load the database');
     res.end();
   }
 });
