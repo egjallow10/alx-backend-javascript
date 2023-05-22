@@ -5,7 +5,6 @@ const app = express();
 const port = '1245';
 
 app.get('/', (req, res) => {
-
   res.send('Hello Holberton School!');
 });
 
@@ -23,8 +22,7 @@ app.get('/students', async (req, res) => {
       ', ',
     )}`);
   } catch (error) {
-    res.status(200).write(error.message);
-    res.end();
+    res.status(200).send(error.message);
   }
 });
 

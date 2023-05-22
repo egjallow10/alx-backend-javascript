@@ -10,7 +10,7 @@ class StudentsController {
       response.write(`Number of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);
       response.end();
     } catch (error) {
-      throw Error('Cannot load the database');
+      throw Error(error.message);
     }
   }
 
@@ -20,7 +20,7 @@ class StudentsController {
     if (major !== 'CS' && major !== 'SWE') {
       response.statusCode = 500;
       request.send('Major parameter must be CS or SWE');
-      // request.end();
+      request.end();
     }
     try {
       const studentData = await readDatabase(process.argv[2]);
@@ -36,9 +36,8 @@ class StudentsController {
       }
     } catch (error) {
       response.statusCode = 500;
-      throw Error('Cannot load the database');
-      // response.send('Cannot load the database');
-      // response.end();
+      response.send(error.message);
+      response.end();
     }
   }
 }
