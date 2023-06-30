@@ -1,7 +1,6 @@
 const express = require('express');
-//import express
+
 const app = express();
-//Specify Port
 const port = 7865;
 
 app.use(express.json());
