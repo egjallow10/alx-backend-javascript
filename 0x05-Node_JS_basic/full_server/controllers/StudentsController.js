@@ -1,4 +1,4 @@
-import readDatabase from '../utils';
+import { readDatabase } from '../utils';
 
 class StudentsController {
   static async getAllStudents(request, response) {
@@ -10,7 +10,7 @@ class StudentsController {
       response.write(`Number of students in SWE: ${studentData.SWE.length}. List: ${studentData.SWE.join(', ')}`);
       response.end();
     } catch (error) {
-      throw Error(error.message);
+      throw new Error(error.message);
     }
   }
 

@@ -1,6 +1,6 @@
-const fs = require('fs');
+import fs from 'fs'
 
-async function readDatabase(fileName) {
+export const readDatabase = async (fileName)=>{
   try {
     const data = await fs.promises.readFile(fileName, 'utf8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
@@ -19,5 +19,3 @@ async function readDatabase(fileName) {
     throw Error('Cannot load the database');
   }
 }
-
-module.exports = readDatabase;
